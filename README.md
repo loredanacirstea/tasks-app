@@ -9,7 +9,6 @@ Repository for a Meteor task management app http://tasks-app.meteor.com/
 * does not display error on insert/update with same username as someone else
 * cannot update the email address
 * remove empty columns from the update & remove buttons, when user is not admin
-* only supports unique taskList for a task
 
 #### Packages used:
 ##### accounts
