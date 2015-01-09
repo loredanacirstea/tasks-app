@@ -1,0 +1,36 @@
+<head>
+  <title>task-app</title>
+</head>
+
+<body>
+ 
+</body>
+
+<template name="home">
+    {{> navbar}}
+</template>
+
+<template name="navbar">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Tasks App</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li id="li_tasks"><a href="javascript:;">Tasks</a></li>
+                <li id="li_tasklists"><a href="javascript:;">Task Lists</a></li>
+                <li id="li_users"><a href="javascript:;">Users</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {{> loginButtons}}
+            </ul>
+        </div>
+    </div>
+    <div id="content"></div>
+    <div id="modal">{{> autoformModals}}</div>
+</template>
+
+
+<template name="_loginButtonsAdditionalLoggedInDropdownActions">
+    {{#afModal class="btn btn-default btn-block" collection="Meteor.users" fields="username,profile" id="login-buttons-edit-profile" operation="update" buttonContent="Update Profile" title="Update your profile" buttonClasses="btn-primary" doc=currentUser._id}}Edit profile{{/afModal}}
+</template>

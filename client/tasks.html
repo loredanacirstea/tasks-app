@@ -1,0 +1,33 @@
+<template name="tasks">
+    {{#if isInRole 'admin'}}
+        {{> insert_task}}
+    {{/if}}
+    {{> view_tasks}}
+</template>
+
+<template name="insert_task">
+    <div class="insert_button">
+        {{#afModal class="btn btn-default btn-block" collection="Task" fields="taskListId,title,description,priority,deadline,snapshot" id="insert_task" operation="insert" buttonContent="Insert Task" title="Insert a New Task" buttonClasses="btn-primary"}}New Task{{/afModal}}
+    </div>
+</template>
+
+<template name="view_tasks">
+    <div class="table-responsive">
+        {{> tabular table=TabularTables.Tasks class="table table-striped table-bordered table-hover table-condensed"}}
+    </div>
+</template>
+
+<template name="update_task">
+    <div class="update_button">
+        {{#if isInRole 'admin'}}
+            {{#afModal class="btn btn-default btn-block" collection="Task" fields="taskListId,title,description,priority,deadline,snapshot" id="update_task" operation="update" doc=this._id buttonContent="Update Task" title="Update Task" buttonClasses="btn-primary"}}Update{{/afModal}}
+        {{/if}}
+    </div>
+</template>
+<template name="remove_task">
+    <div class="remove_button">
+        {{#if isInRole 'admin'}}
+            {{#afModal class="btn btn-default btn-block" collection="Task" fields="taskListId,title,description,priority,deadline,snapshot" id="remove_task" operation="remove" doc=this._id buttonContent="Remove Task" title="Remove Task" buttonClasses="btn-primary"}}Remove{{/afModal}}
+        {{/if}}
+    </div>
+</template>
