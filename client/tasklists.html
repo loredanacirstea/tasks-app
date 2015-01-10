@@ -15,15 +15,12 @@
     {{> tabular table=TabularTables.TaskList class="table table-striped table-bordered table-condensed"}}
 </template>
 
-<template name="update_tasklist">
+<template name="operation_tasklist">
     <div class="update_button">
         {{#if isInRole 'admin'}}
             {{#afModal class="btn btn-default btn-block" collection="TaskList" fields="userId,title" id="update_tasklist" operation="update" doc=this._id buttonContent="Update Task List" title="Update Task List" buttonClasses="btn-primary"}}Update{{/afModal}}
         {{/if}}
     </div>
-</template>
-
-<template name="remove_tasklist">
     <div class="remove_button">
         {{#if isInRole 'admin'}}
             {{#afModal class="btn btn-default btn-block" collection="TaskList" fields="userId,title" id="update_tasklist" operation="remove" doc=this._id buttonContent="Remove Task List" title="Remove Task List" buttonClasses="btn-primary"}}Remove{{/afModal}}

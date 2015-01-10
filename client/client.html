@@ -29,8 +29,3 @@
     <div id="content"></div>
     <div id="modal">{{> autoformModals}}</div>
 </template>
-
-
-<template name="_loginButtonsAdditionalLoggedInDropdownActions">
-    {{#afModal class="btn btn-default btn-block" collection="Meteor.users" fields="username,profile" id="login-buttons-edit-profile" operation="update" buttonContent="Update Profile" title="Update your profile" buttonClasses="btn-primary" doc=currentUser._id}}Edit profile{{/afModal}}
-</template>

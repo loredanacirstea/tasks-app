@@ -1,3 +1,9 @@
+
+<template name="_loginButtonsAdditionalLoggedInDropdownActions">
+    {{#afModal class="btn btn-default btn-block" collection="Meteor.users" fields="profile.firstName,profile.lastName" id="login-buttons-edit-profile" operation="update" buttonContent="Update Profile" title="Update your profile" buttonClasses="btn-primary" doc=currentUser._id}}Edit profile{{/afModal}}
+</template>
+
+
 <template name="users">
     {{> view_users}}
 </template>
@@ -6,15 +12,12 @@
     {{> tabular table=TabularTables.UserList class="table table-striped table-bordered table-condensed"}}
 </template>
 
-<template name="update_user">
+<template name="operation_user">
     <div class="update_button">
         {{#if isInRole 'admin'}}
-            {{#afModal class="btn btn-default btn-block" collection="Meteor.users" fields="profile,roles" id="update_user" operation="update" doc=this._id buttonContent="Update User Role" title="Update User Role" buttonClasses="btn-primary"}}Update{{/afModal}}
+            {{#afModal class="btn btn-default btn-block" collection="Meteor.users" fields="profile" id="update_user" operation="update" doc=this._id buttonContent="Update User" title="Update User" buttonClasses="btn-primary"}}Update{{/afModal}}
         {{/if}}
     </div>
-</template>
-
-<template name="remove_user">
     <div class="remove_button">
         {{#if isInRole 'admin'}}
             {{#afModal class="btn btn-default btn-block" collection="Meteor.users" fields="profile,roles" id="remove_user" operation="remove" doc=this._id buttonContent="Remove User" title="Remove User" buttonClasses="btn-primary"}}Remove{{/afModal}}

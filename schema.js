@@ -94,7 +94,20 @@ Schemas.UserProfile = new SimpleSchema({
         type: String,
         label: 'Last Name',
         regEx: /^[a-zA-Z]{2,25}$/,
+        defaultValue: "EditProfile",
         optional: true
+    },
+    role: {
+        type: String,
+        label: 'Role',
+        optional: true,
+        autoform: {
+          type: "select",
+          options: function () {
+            var option = {"client":"client","admin":"admin"};
+            return option;
+          }
+        }
     }
 });
 Schemas.User = new SimpleSchema({
@@ -132,24 +145,7 @@ Schemas.User = new SimpleSchema({
         label: 'Role',
         blackbox: true,
         optional: true
-    }/*,
-    "roles.$.__global_roles__": {
-        type: [Object],
-        blackbox: true,
-        optional: true
-    },
-    "roles.$.__global_roles__.$.0": {
-        type: [Object],
-        label: 'Global Role',
-        blackbox: true,
-        optional: true,
-        autoform: {
-          type: "select",
-          options: function () {
-            return ["client","admin"];
-          }
-        }
-    }*/
+    }
 });
 
 Meteor.users.attachSchema(Schemas.User);

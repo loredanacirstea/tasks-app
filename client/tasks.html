@@ -3,6 +3,7 @@
         {{> insert_task}}
     {{/if}}
     {{> view_tasks}}
+    <div class="modal_image_div">{{> modal_image}}</div>
 </template>
 
 <template name="insert_task">
@@ -17,17 +18,34 @@
     </div>
 </template>
 
-<template name="update_task">
+<template name="operation_task">
     <div class="update_button">
         {{#if isInRole 'admin'}}
             {{#afModal class="btn btn-default btn-block" collection="Task" fields="taskListId,title,description,priority,deadline,snapshot" id="update_task" operation="update" doc=this._id buttonContent="Update Task" title="Update Task" buttonClasses="btn-primary"}}Update{{/afModal}}
         {{/if}}
     </div>
-</template>
-<template name="remove_task">
     <div class="remove_button">
         {{#if isInRole 'admin'}}
             {{#afModal class="btn btn-default btn-block" collection="Task" fields="taskListId,title,description,priority,deadline,snapshot" id="remove_task" operation="remove" doc=this._id buttonContent="Remove Task" title="Remove Task" buttonClasses="btn-primary"}}Remove{{/afModal}}
         {{/if}}
+    </div>
+</template>
+
+<template name="render_image">
+    <a href="javascript:;"><img class="grid_img" src={{this.src}}></a>
+</template>
+
+<template name="modal_image">
+    <div class="modal fade modal_image">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <img class="modal_img" src={{$.Session.get "image_src"}}>
+          </div>
+        </div>
+      </div>
     </div>
 </template>

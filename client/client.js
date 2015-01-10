@@ -46,4 +46,11 @@ AutoForm.addHooks(null, {
     }
 });
 
-//$('select').val($('select').val()).change();
+Template.tasks.events({
+  'click .grid_img': function (event) {
+      var src = $(event.currentTarget).attr('src');
+      Session.set("image_src",src);
+      $(".modal_image").modal('toggle');
+      event.stopPropagation();
+  }
+});

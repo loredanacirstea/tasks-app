@@ -12,6 +12,12 @@ Images.allow({
   },
   remove: function () {
     return true;
+  },
+  download: function () {
+    return true;
+  },
+  update: function () {
+    return true;
   }
 });
 
@@ -51,7 +57,8 @@ Meteor.publish('tabular_tasks', function (tableName, ids, fields) {
                 return fullname;
             }, 'user');
         doc.image = this.changeParentDoc(Images.find({_id: doc.snapshot}), function (id, doc){
-                return {name: doc.original.name, key: doc.copies.images.key};
+                var key = doc.copies.images.key.replace(/-/g,"/");
+                return {name: doc.original.name, src: "cfs/files/"+key};
         }, 'image');
         //doc.userRole = this.changeParentDoc(Roles.find())
       });
@@ -68,11 +75,14 @@ Meteor.publish('tabular_tasklist', function (tableName, ids, fields) {
     }
     */
     Publish.relations(this, TaskList.find({}), function (id, doc) {
+        var role = '';
         doc.user = this.changeParentDoc(Meteor.users.find({_id: doc.userId}), function (id, doc){
                 var fullname = doc.profile.firstName + " " + doc.profile.lastName;
+                role = doc.profile.role;
                 return fullname;
             }, 'user');
-        doc.roles = Roles.getRolesForUser(doc.userId)[0];
+        //doc.role = Roles.getRolesForUser(doc.userId)[0];
+        doc.role = role;
       });
       return this.ready();
 });

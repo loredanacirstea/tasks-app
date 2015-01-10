@@ -6,3 +6,12 @@
     max-width: 20%;
     margin-bottom: 15px;
 }
+.grid_img{
+    max-height: 65px;
+}
+.modal_img{
+    max-height: 400px;
+    max-width: 550px;
+    display: block;
+    margin: auto;
+}

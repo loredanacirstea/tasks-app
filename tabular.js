@@ -27,11 +27,17 @@ TabularTables.Tasks = new Tabular.Table({
         data: "image",
         title: "Snapshot",
         render: function(val, type, doc){
-            return val.name;
+            if(val.src){
+                var name = val.src.split("/");
+                name = name[name.length-1];
+            }
+            else{
+                var name = doc.title+"_"+doc.user;
+            }
+            return Blaze.toHTMLWithData(Template.render_image, {src: val.src, title: doc.title, htmlid: name});
         }
     },
-    {tmpl: Meteor.isClient && Template.update_task},
-    {tmpl: Meteor.isClient && Template.remove_task}
+    {tmpl: Meteor.isClient && Template.operation_task}
   ]
 });
 
@@ -42,9 +48,8 @@ TabularTables.TaskList = new Tabular.Table({
     columns: [
         {data: "title", title: "Task List"},
         {data: "user", title: "User"},
-        {data: "roles", title: "Role"},
-        {tmpl: Meteor.isClient && Template.update_tasklist},
-        {tmpl: Meteor.isClient && Template.remove_tasklist}
+        {data: "role", title: "Role"},
+        {tmpl: Meteor.isClient && Template.operation_tasklist}
     ]
 });
 
@@ -64,12 +69,11 @@ TabularTables.UserList = new Tabular.Table({
                 return val.lastName;
             }
         },
-        {data: "roles", title: "Role",
+        {data: "profile", title: "Role",
             render: function (val, type, doc) {
-                return val.__global_roles__[0];
+                return val.role;
             }
         },
-        {tmpl: Meteor.isClient && Template.update_user}, //&& Roles.userIsInRole(Meteor.userId(), 'admin')
-        {tmpl: Meteor.isClient && Template.remove_user}
+        {tmpl: Meteor.isClient && Template.operation_user}
     ]
 });
