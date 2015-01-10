@@ -6,7 +6,11 @@ Repository for a Meteor task management app http://tasks-app.meteor.com/
 * Does not display error on insert/update with same username as someone else
 * Remove empty columns from the update & remove buttons, when user is not admin
 
-#### Packages used:
+### Class Diagram
+
+![Class Diagram](class_diagram.png)
+
+### Packages used:
 ##### accounts
 
     $ meteor add accounts-password
