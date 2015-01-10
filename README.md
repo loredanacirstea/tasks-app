@@ -2,13 +2,9 @@
 Repository for a Meteor task management app http://tasks-app.meteor.com/
 
 ### Some of the known bugs/caveats:
-* filtering is not yet implemented
-* cannot update the role of the user (client/admin)
-* does not show the picture in the task grid and one cannot view a full-dim picture yet
-* fully reactive grid - after insert, reactivity is forced only in the client and not all values are retrieved correctly
-* does not display error on insert/update with same username as someone else
-* cannot update the email address
-* remove empty columns from the update & remove buttons, when user is not admin
+* Fully reactive grid - after inserting a new task, reactivity is forced only in the client - should have server hook (not all values are retrieved correctly without refreshing/changing page). Also, updating values from another tab (Task List / Users) do not propagate reactively - refresh needed.
+* Does not display error on insert/update with same username as someone else
+* Remove empty columns from the update & remove buttons, when user is not admin
 
 #### Packages used:
 ##### accounts
