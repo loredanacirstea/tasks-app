@@ -10,6 +10,37 @@ Meteor.subscribe('tasks');
 Meteor.subscribe('tasklists');
 Meteor.subscribe('images');
 
+Tracker.autorun(function (){
+  var remove = TaskList.find({}).observeChanges({
+      removed: function (id) {
+          var tasks = Task.find({taskListId: id},{fields: {_id:1}}).fetch();
+          var ids = [];
+          for(t in tasks){
+              ids.push(tasks[t]._id);
+          }
+          Meteor.call('delete_tasks', ids, function (error, result) {
+              //console.log(error);
+              //console.log(result);
+          });
+      }
+  });
+});
+
+Tracker.autorun(function (){
+  var remove = Meteor.users.find({}).observeChanges({
+      removed: function (id) {
+          var lists = TaskList.find({userId: id},{fields: {_id:1}}).fetch();
+          var ids = [];
+          for(t in lists){
+              ids.push(lists[t]._id);
+          }
+          Meteor.call('delete_tasklists', ids, function (error, result) {
+              //console.log(error);
+              //console.log(result);
+          });
+      }
+  });
+});
 
 Template.home.rendered = function(){
   $('li').removeClass("active");
@@ -46,6 +77,10 @@ AutoForm.addHooks(null, {
     }
 });
 
+Template.tasks.rendered = function(){
+    Session.set("schema", "Task");
+}
+
 Template.tasks.events({
   'click .grid_img': function (event) {
       var src = $(event.currentTarget).attr('src');
@@ -54,3 +89,13 @@ Template.tasks.events({
       event.stopPropagation();
   }
 });
+
+// for using the filter:
+/*
+Template.view_tasks.helpers({
+  selector: function (){
+    var select = Session.get("filter_selector");
+    return select;
+  }
+});
+*/

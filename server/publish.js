@@ -46,7 +46,7 @@ Meteor.publish('tabular_tasks', function (tableName, ids, fields) {
         return [];
     }
     */
-    Publish.relations(this, Task.find({}), function (id, doc) {
+    Publish.relations(this, Task.find({_id: {$in: ids}}, {fields: fields}), function (id, doc) {
         var userid = '';
         doc.taskList = this.changeParentDoc(TaskList.find({_id: doc.taskListId},{title:1, _id: 0}), function (id, doc){
                 userid = doc.userId;
@@ -74,7 +74,7 @@ Meteor.publish('tabular_tasklist', function (tableName, ids, fields) {
         return [];
     }
     */
-    Publish.relations(this, TaskList.find({}), function (id, doc) {
+    Publish.relations(this, TaskList.find({_id: {$in: ids}}, {fields: fields}), function (id, doc) {
         var role = '';
         doc.user = this.changeParentDoc(Meteor.users.find({_id: doc.userId}), function (id, doc){
                 var fullname = doc.profile.firstName + " " + doc.profile.lastName;
@@ -85,4 +85,16 @@ Meteor.publish('tabular_tasklist', function (tableName, ids, fields) {
         doc.role = role;
       });
       return this.ready();
+});
+
+
+Meteor.methods({
+    delete_tasks: function(ids){
+        console.log(ids);
+        Task.remove({_id: {$in: ids}});
+    },
+    delete_tasklists: function(ids){
+        console.log(ids);
+        TaskList.remove({_id: {$in: ids}});
+    }
 });

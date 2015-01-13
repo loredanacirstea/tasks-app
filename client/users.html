@@ -20,7 +20,7 @@
     </div>
     <div class="remove_button">
         {{#if isInRole 'admin'}}
-            {{#afModal class="btn btn-default btn-block" collection="Meteor.users" fields="profile,roles" id="remove_user" operation="remove" doc=this._id buttonContent="Remove User" title="Remove User" buttonClasses="btn-primary"}}Remove{{/afModal}}
+            {{#afModal class="btn btn-default btn-block" collection="Meteor.users" fields="profile,roles" id="remove_user" operation="remove" doc=this._id buttonContent="Remove User" title="Remove User" buttonClasses="btn-primary" prompt="Are you sure? This will delete all Task Lists associated with this user."}}Remove{{/afModal}}
         {{/if}}
     </div>
 </template>

@@ -23,7 +23,7 @@
     </div>
     <div class="remove_button">
         {{#if isInRole 'admin'}}
-            {{#afModal class="btn btn-default btn-block" collection="TaskList" fields="userId,title" id="update_tasklist" operation="remove" doc=this._id buttonContent="Remove Task List" title="Remove Task List" buttonClasses="btn-primary"}}Remove{{/afModal}}
+            {{#afModal class="btn btn-default btn-block" collection="TaskList" fields="userId,title" id="update_tasklist" operation="remove" doc=this._id buttonContent="Remove Task List" title="Remove Task List" buttonClasses="btn-primary" prompt="Are you sure? This will delete all tasks under this Task List."}}Remove{{/afModal}}
         {{/if}}
     </div>
 </template>

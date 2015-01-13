@@ -2,14 +2,17 @@ TabularTables = {};
 
 Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
 
+
 TabularTables.Tasks = new Tabular.Table({
   name: "Tasks",
   collection: Task,
   pub: "tabular_tasks",
   columns: [
+    {data: "taskListId", visible: false},
     {data: "taskList", title: "Task List"},
     {data: "title", title: "Title"},
     {data: "description", title: "Description"},
+    {data: "userId", visible: false},
     {data: "user", title: "User"},
     {data: "priority", title: "Priority"},
     {
@@ -23,6 +26,7 @@ TabularTables.Tasks = new Tabular.Table({
         }
       }
     },
+    {data: "snapshot", visible: false},
     {
         data: "image",
         title: "Snapshot",
@@ -37,6 +41,10 @@ TabularTables.Tasks = new Tabular.Table({
             return Blaze.toHTMLWithData(Template.render_image, {src: val.src, title: doc.title, htmlid: name});
         }
     },
+    {
+        data: "repetitions",
+        title: "Repetitions"
+    },
     {tmpl: Meteor.isClient && Template.operation_task}
   ]
 });
@@ -47,6 +55,7 @@ TabularTables.TaskList = new Tabular.Table({
     pub: "tabular_tasklist",
     columns: [
         {data: "title", title: "Task List"},
+        {data: "userId", visible: false},
         {data: "user", title: "User"},
         {data: "role", title: "Role"},
         {tmpl: Meteor.isClient && Template.operation_tasklist}
