@@ -2,7 +2,7 @@
 Repository for a Meteor task management app http://tasks-app.meteor.com/
 
 ### Some of the known bugs/caveats:
-* Fully reactive grid - after inserting a new task, reactivity is forced only in the client - should have server hook (not all values are retrieved correctly without refreshing/changing page). Also, updating values from another tab (Task List / Users) do not propagate reactively - refresh needed.
+* After inserting/updating a task, some of the values are not correctly retrieved. This is because I did not normalize the databases and I use a joined collection for creating the grid. Also, updating values from another tab (Task List / Users) do not propagate reactively - refresh needed. These issues are solvable.
 * Does not display error on insert/update with same username as someone else
 * Remove empty columns from the update & remove buttons, when user is not admin
 
