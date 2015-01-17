@@ -2,7 +2,7 @@
 
 Repository for a Meteor task management app http://tasks-app.meteor.com/
 
-Android .apk can be found at: `/public/tasks-app_0.0.1.apk`
+Android .apk can be found in`/public/tasks-app_0.0.1.apk`, or: [click for download](https://github.com/loredanacirstea/tasks-app/raw/master/public/tasks-app_0.0.1.apk)
 
 ### Some of the known bugs/caveats:
 * Fully reactive grid - after inserting/updating a new task, some values are not retrieved correctly due to using joined collections. If page is refreshed, the output is correct.
