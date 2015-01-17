@@ -11,21 +11,29 @@
 </template>
 
 <template name="navbar">
-    <div class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Tasks App</a>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsed_navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Tasks App</a>
+            </div>
+            <div class="navbar-collapse collapse" id="collapsed_navbar">
+                <ul class="nav navbar-nav">
+                    <li id="li_tasks"><a href="javascript:;">Tasks</a></li>
+                    <li id="li_tasklists"><a href="javascript:;">Task Lists</a></li>
+                    <li id="li_users"><a href="javascript:;">Users</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {{> loginButtons}}
+                </ul>
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li id="li_tasks"><a href="javascript:;">Tasks</a></li>
-                <li id="li_tasklists"><a href="javascript:;">Task Lists</a></li>
-                <li id="li_users"><a href="javascript:;">Users</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                {{> loginButtons}}
-            </ul>
-        </div>
-    </div>
+    </nav>
     <div id="content"></div>
     <div id="modal">{{> autoformModals}}</div>
 </template>

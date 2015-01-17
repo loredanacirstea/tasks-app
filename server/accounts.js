@@ -1,5 +1,5 @@
 Accounts.onCreateUser(function(info, user) {
-    if(info.email == 'ionut.titei@east-wolf.com' || info.email == 'office@east-wolf.com' || info.email == 'mihai.constantinescu@east-wolf.com' || info.email == 'loredana.cirstea@gmail.com'){
+    if(Meteor.users.find().count() == 0){
         var role = 'admin';
     }
     else{

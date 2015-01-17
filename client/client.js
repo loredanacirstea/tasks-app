@@ -90,12 +90,11 @@ Template.tasks.events({
   }
 });
 
-// for using the filter:
-/*
 Template.view_tasks.helpers({
   selector: function (){
     var select = Session.get("filter_selector");
+    console.log(select);
+    //var select = { "$and": [ { "taskListId":"JqW2cxsZAK6gudJZs" }, { "priority": "medium" } ] };
     return select;
   }
 });
-*/
